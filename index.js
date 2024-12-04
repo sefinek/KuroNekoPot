@@ -6,6 +6,7 @@ const path = require('node:path');
 const getClientIp = require('./services/serverIp.js');
 const reportIpToAbuseIPDB = require('./services/abuseipdb.js');
 const isLocalIP = require('./services/isLocalIP.js');
+const RenderError = require('./services/RenderError.js');
 
 const app = express();
 
@@ -83,10 +84,16 @@ app.use(async (req, res, next) => {
 	next();
 });
 
+
 // Routes
 app.use(require('./routes/Index.js'));
 app.use(require('./routes/Admin.js'));
 
-// Start server
+
+// Error handling
+app.use((req, res) => RenderError(req, res, 404));
+app.use((err, req, res, _next) => RenderError(req, res, 500, err));
+
+// Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => process.send ? process.send('ready') : console.log(`Server running at http://127.0.0.1:${port}`));
