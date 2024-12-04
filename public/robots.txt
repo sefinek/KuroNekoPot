@@ -3,3 +3,4 @@ Disallow: /private/
 Disallow: /admin/
 Disallow: /administrator/
 Disallow: /panel/
+Disallow: /backup/
