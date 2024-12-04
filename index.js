@@ -6,7 +6,7 @@ const path = require('node:path');
 const getClientIp = require('./services/serverIp.js');
 const reportIpToAbuseIPDB = require('./services/abuseipdb.js');
 const isLocalIP = require('./services/isLocalIP.js');
-const RenderError = require('./services/RenderError.js');
+const RenderError = require('./services/renderError.js');
 
 const app = express();
 
