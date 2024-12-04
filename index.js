@@ -65,21 +65,21 @@ app.use(async (req, res, next) => {
 	}
 
 	setTimeout(async () => {
-		if (ipRequestMap.has(ip)) {
-			const data = ipRequestMap.get(ip);
-			const combinedLog = data.log.map(log => log.entry).join('\n');
-			const reportMessage = data.log.length === 1 ?
-				`${ip} - ${data.log[0].entry} "${data.log[0].userAgent}"` :
-				`${combinedLog}\n\n${data.log[data.log.length - 1].userAgent || 'Empty useragent'}`;
-			try {
-				await reportIpToAbuseIPDB(ip, data, reportMessage);
-				ipRequestMap.delete(ip);
-				fs.writeFileSync(dataFilePath, JSON.stringify(Array.from(ipRequestMap.entries()), null, 2));
-			} catch (err) {
-				console.error('Error reporting IP or writing JSON data:', err);
-			}
+		if (!ipRequestMap.has(ip)) return;
+
+		const data = ipRequestMap.get(ip);
+		const combinedLog = data.log.map(log => log.entry).join('\n');
+		const reportMessage = data.log.length === 1 ?
+			`${ip} - ${data.log[0].entry} "${data.log[0].userAgent}"` :
+			`${combinedLog}\n\n${data.log[data.log.length - 1].userAgent || 'Empty useragent'}`;
+		try {
+			await reportIpToAbuseIPDB(ip, data, reportMessage);
+			ipRequestMap.delete(ip);
+			fs.writeFileSync(dataFilePath, JSON.stringify(Array.from(ipRequestMap.entries()), null, 2));
+		} catch (err) {
+			console.error('Error reporting IP or writing JSON data:', err);
 		}
-	}, 15 * 60 * 1000);
+	}, 20 * 60 * 1000);
 
 	next();
 });
@@ -95,5 +95,5 @@ app.use((req, res) => RenderError(req, res, 404));
 app.use((err, req, res, _next) => RenderError(req, res, 500, err));
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8053;
 app.listen(port, () => process.send ? process.send('ready') : console.log(`Server running at http://127.0.0.1:${port}`));
