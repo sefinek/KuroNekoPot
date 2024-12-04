@@ -1,5 +1,5 @@
 const timeout = require('express-timeout-handler');
-const RenderError = require('./renderError.js');
+const RenderError = require('../services/renderError.js');
 
 module.exports = () => timeout.handler({
 	timeout: 4000,

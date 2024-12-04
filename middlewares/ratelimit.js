@@ -1,5 +1,5 @@
 const rateLimit = require('express-rate-limit');
-const RenderError = require('./renderError.js');
+const RenderError = require('../services/renderError.js');
 
 module.exports = rateLimit({
 	windowMs: 30 * 1000,
