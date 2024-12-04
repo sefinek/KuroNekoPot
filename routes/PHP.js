@@ -45,9 +45,13 @@ router.get('/panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', PHPEndpo
 router.get('/public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', PHPEndpointsController.success);
 router.get('/apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', PHPEndpointsController.success);
 router.get('/app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php', PHPEndpointsController.success);
+router.get('/service/krashrpt.php', PHPEndpointsController.success);
+router.get('/password.php', PHPEndpointsController.success);
+router.get('/SQlite/main.php', PHPEndpointsController.success);
 
+router.post('/form.php', PHPEndpointsController.success);
+router.post('/hello.world', PHPEndpointsController.hello);
 router.post('/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/bin/sh', PHPEndpointsController.success);
 router.post('/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/bin/sh', PHPEndpointsController.success);
-router.post('/hello.world', PHPEndpointsController.hello);
 
 module.exports = router;
