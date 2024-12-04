@@ -87,6 +87,7 @@ app.use(async (req, res, next) => {
 
 // Routes
 app.use(require('./routes/Index.js'));
+app.use(require('./routes/PHP.js'));
 app.use(require('./routes/Admin.js'));
 
 

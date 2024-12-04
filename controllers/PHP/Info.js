@@ -1,4 +1,4 @@
-const { getAddress } = require('../services/serverIp.js');
+const { getAddress } = require('../../services/serverIp.js');
 
 module.exports = (req, res) => {
 	res.render('info.ejs', {
