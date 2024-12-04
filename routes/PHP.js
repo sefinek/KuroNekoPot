@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const router = Router();
 
-const PHPInfoController = require('../controllers/php/Info.js');
-const PHPEndpointsController = require('../controllers/php/Endpoints.js');
+const PHPInfoController = require('../controllers/PHP/Info.js');
+const PHPEndpointsController = require('../controllers/PHP/Endpoints.js');
 
 router.get('/info.php', PHPInfoController);
 router.get('/phpinfo.php', PHPInfoController);
