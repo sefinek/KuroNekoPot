@@ -1,5 +1,5 @@
 # KuroNekoPot 🐈‍⬛
-A simple honeypot created with Express.js.
+A simple honeypot developed with Express.js.
 
 ## Features
 1. ✅ Integration with AbuseIPDB
