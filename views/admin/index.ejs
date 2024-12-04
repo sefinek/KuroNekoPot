@@ -1,0 +1,72 @@
+<%- include('./includes/header.ejs', { page: 'dashboard' }) %>
+
+<div class="main-content">
+    <div class="header">
+        <h1>Admin Control Panel</h1>
+        <div class="button-container">
+            <a href="/administrator/add-user"><button><i class="fas fa-user-plus"></i> Add User</button></a>
+            <a href="/administrator/view-stats"><button><i class="fas fa-chart-line"></i> View Stats</button></a>
+            <a href="/administrator/settings"><button><i class="fas fa-cogs"></i> Settings</button></a>
+            <a href="/administrator/manage-roles"> <button><i class="fas fa-user-lock"></i> Manage Roles</button></a>
+            <a href="/administrator/logout"><button class="logout"><i class="fas fa-sign-out-alt"></i> Logout</button></a>
+        </div>
+    </div>
+
+    <div class="statistics">
+        <div class="stat-box">
+            <h3><%= stats.totalUsers %></h3>
+            <p>Total Users</p>
+        </div>
+        <div class="stat-box">
+            <h3><%= stats.newUsers %></h3>
+            <p>New Users (Last 24h)</p>
+        </div>
+        <div class="stat-box">
+            <h3><%= stats.activeSessions %></h3>
+            <p>Active Sessions</p>
+        </div>
+        <div class="stat-box">
+            <h3><%= stats.alertsTriggered %></h3>
+            <p>Alerts Triggered</p>
+        </div>
+    </div>
+
+    <div class="token-info">
+        <h2>System Tokens & Session Data</h2>
+        <p><strong>Access Token:</strong> <%= tokens.accessToken %></p>
+        <p><strong>Refresh Token:</strong> <%= tokens.refreshToken %></p>
+        <p><strong>Session ID:</strong> <%= tokens.sessionId %></p>
+        <p><strong>CSRF Token:</strong> <%= tokens.csrfToken %></p>
+    </div>
+
+    <div class="table-container">
+        <h2>Login and Registration Statistics</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>Email</th>
+                <th>Action</th>
+                <th>IP Address</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% loginStats.forEach(log => { %>
+                <tr>
+                    <td><%= log.timestamp %></td>
+                    <td><%= log.user %></td>
+                    <td><%= log.email %></td>
+                    <td><%= log.action %></td>
+                    <td><%= log.ip %></td>
+                    <td><%= log.status %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('./includes/footer.ejs') %>

@@ -1,0 +1,24 @@
+<%- include('./includes/header.ejs', { page: 'login' }) %>
+
+<div class="login-container">
+    <form action="/administrator/login" method="POST" class="login-form">
+        <h2>Admin Login</h2>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="login-button">Login</button>
+
+        <div class="error-message">
+            <% if (typeof error !== 'undefined' && error) { %>
+                <p><%= error %></p>
+            <% } %>
+        </div>
+    </form>
+</div>
+
+<%- include('./includes/footer.ejs') %>

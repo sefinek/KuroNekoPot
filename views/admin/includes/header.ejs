@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/admin/<%= page %>.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+
+<% if (page !== 'login') { %>
+    <div class="sidebar">
+        <h2 style="text-align: center;">Dashboard</h2>
+        <a href="#home" <%- page === 'dashboard' ? 'class="active"' : '' %>><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#users" <%- page === 'users' ? 'class="active"' : '' %>><i class="fas fa-users"></i> Users</a>
+        <a href="#reports" <%- page === 'reports' ? 'class="active"' : '' %>><i class="fas fa-chart-line"></i> Reports</a>
+        <a href="#settings" <%- page === 'settings' ? 'class="active"' : '' %>><i class="fas fa-cogs"></i> Settings</a>
+        <a href="#security" <%- page === 'security' ? 'class="active"' : '' %>><i class="fas fa-shield-alt"></i> Security</a>
+        <a href="#logs" <%- page === 'logs' ? 'class="active"' : '' %>><i class="fas fa-file-alt"></i> Logs</a>
+    </div>
+<% } %>
