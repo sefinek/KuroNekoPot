@@ -42,9 +42,8 @@ if (fs.existsSync(dataFilePath)) {
 
 // Track and report IP addresses
 app.use(async (req, res, next) => {
-	const serverIp = getClientIp.getAddress();
 	const ip = req.ip.replace('::ffff:', '');
-	if (serverIp === ip || isLocalIP(ip)) return next();
+	if (getClientIp() === ip || isLocalIP(ip)) return next();
 
 	const currentTimestamp = Date.now();
 	const requestLogEntry = `${req.method} ${req.originalUrl}`;

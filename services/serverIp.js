@@ -1,22 +1,26 @@
 const axios = require('./axios.js');
 
-let address = null; // Holds the IP address
+let address = null;
 
 const fetchIPAddress = async () => {
+	if (address) return;
+
 	try {
 		const { data } = await axios.get('https://api.sefinek.net/api/v2/ip');
-		if (data?.success) {
+		if (data?.success && data?.message) {
 			address = data.message;
 		} else {
-			console.error('Failed to retrieve your IP');
+			setTimeout(fetchIPAddress, 20 * 1000);
 		}
-	} catch (err) {
-		console.error('Error fetching your IP', err.stack);
+	} catch {
+		setTimeout(fetchIPAddress, 25 * 1000);
 	}
 };
 
+if (process.env.NODE_ENV === 'production') {
+	(async () => fetchIPAddress())();
+} else {
+	address = '::ffff:127.0.0.1';
+}
 
-setInterval(fetchIPAddress, 35 * 60 * 1000);
-(async () => fetchIPAddress())();
-
-module.exports = { fetchIPAddress, getAddress: () => address };
+module.exports = () => address;

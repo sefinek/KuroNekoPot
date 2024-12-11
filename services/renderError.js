@@ -5,7 +5,7 @@ module.exports = (req, res, code, err) => {
 	if ([429, 500, 503].includes(code)) return res.status(code).end();
 
 	res.status(code).render(`errors/${code}.ejs`, {
-		ip: getClientIp.getAddress() || req.ip || req.connection.remoteAddress,
+		ip: getClientIp() || req.ip || req.connection.remoteAddress,
 		port: req.socket.localPort,
 	});
 };
