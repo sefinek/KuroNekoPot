@@ -3,7 +3,7 @@ const express = require('express');
 const compression = require('compression');
 const fs = require('node:fs');
 const path = require('node:path');
-const getClientIp = require('./services/serverIp.js');
+const getServerIP = require('./services/serverIp.js');
 const reportIpToAbuseIPDB = require('./services/abuseipdb.js');
 const isLocalIP = require('./services/isLocalIP.js');
 const RenderError = require('./services/renderError.js');
@@ -43,7 +43,7 @@ if (fs.existsSync(dataFilePath)) {
 // Track and report IP addresses
 app.use(async (req, res, next) => {
 	const ip = req.ip.replace('::ffff:', '');
-	if (getClientIp() === ip || isLocalIP(ip)) return next();
+	if (getServerIP() === ip || isLocalIP(ip)) return next();
 
 	const currentTimestamp = Date.now();
 	const requestLogEntry = `${req.method} ${req.originalUrl}`;
