@@ -13,7 +13,7 @@ JWT_EXPIRATION=48h
 MAILER_HOST=smtp.prideshop.pl
 MAILER_PORT=465
 MAILER_AUTH_USER=noreply@prideshop.pl
-MAILER_AUTH_PASSWD="y8Jvo*!KiYui%XiO238*uYjm!TIUDk"
+MAILER_AUTH_PASSWD="K7S8P9JmARnmnFY%lLzgKP^$MwhYzX"
 MAIL_CONTACT=contact@prideshop.pl
 
 # Redis
