@@ -1,4 +1,4 @@
-require('env-native').config();
+process.loadEnvFile();
 const express = require('express');
 const compression = require('compression');
 const fs = require('node:fs');
